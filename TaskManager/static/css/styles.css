@@ -1,0 +1,179 @@
+body {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* White text color */
+    font-family: Arial, sans-serif; /* Font family */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+}
+
+.menu {
+    background-color: #1e1e1e; /* Darker background for the menu */
+    padding: 10px; /* Padding around the menu */
+    width: 100%; /* Full width */
+    display: flex; /* Use flexbox for menu items */
+    justify-content: space-between; /* Space items evenly */
+}
+
+.menu .homebtn {
+    color: #ffffff; /* White text color for home button */
+    margin-right: 20px; /* Space to the right */
+}
+
+.menu .auth-links {
+    color: #ffffff; /* White text color for auth links */
+    display: flex; /* Use flexbox for auth links */
+    gap: 15px; /* Space between links */
+}
+
+.menu a {
+    text-decoration: none; /* Remove underline from links */
+    color: #ffffff; /* White text color for links */
+}
+
+.content {
+    padding: 20px; /* Padding around content */
+    text-align: center; /* Center text */
+}
+
+.content a {
+    display: inline-block; /* Make links block elements */
+    background-color: #007bff; /* Blue background for links */
+    color: #ffffff; /* White text color */
+    padding: 10px 15px; /* Padding inside links */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    margin: 10px 0; /* Margin above and below */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.content a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.content a.task {
+    display: inline; /* Inline display for task links */
+    background-color: transparent; /* No background */
+    color: #ffffff; /* White text color */
+    padding: 0; /* No padding */
+    border: none; /* No border */
+    text-decoration: none; /* Remove underline */
+    margin: 0; /* No margin */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+button {
+    display: inline-block; /* Make buttons block elements */
+    background-color: #007bff; /* Blue background for buttons */
+    color: #ffffff; /* White text color */
+    padding: 10px 15px; /* Padding inside buttons */
+    border-radius: 5px; /* Rounded corners */
+    margin: 10px 0; /* Margin above and below */
+    transition: background-color 0.3s; /* Smooth background color transition */
+    border: none; /* Remove default border */
+    outline: none; /* Remove outline on focus */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+form p {
+    margin: 10px 0; /* Margin above and below paragraphs */
+    font-size: 14px; /* Font size for paragraphs */
+    color: #ffffff; /* White text color */
+}
+
+input[type="submit"] {
+    display: inline-block; /* Make submit button block element */
+    background-color: #007bff; /* Blue background for submit button */
+    color: #ffffff; /* White text color */
+    padding: 10px 15px; /* Padding inside submit button */
+    border-radius: 5px; /* Rounded corners */
+    margin: 10px 0; /* Margin above and below */
+    transition: background-color 0.3s; /* Smooth background color transition */
+    border: none; /* Remove default border */
+    outline: none; /* Remove outline on focus */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+textarea,
+input[type="text"], input[type="password"]{
+    background-color: #1e1e1e !important; /* Dark background for inputs */
+    color: #ffffff !important; /* White text color */
+    border: 1px solid #007bff; /* Blue border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside inputs */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding and border in width */
+    font-size: 16px; /* Font size for inputs */
+    margin-top: 10px; /* Margin above inputs */
+
+}
+
+textarea {
+    resize: none; /* Disable resizing for textarea */
+}
+
+textarea:focus,
+input[type="text"]:focus {
+    border-color: #0056b3; /* Darker blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+  }
+
+.flex-container {
+    display: flex; /* Use flexbox layout */
+    flex-direction: row; /* Arrange items in a row */
+    gap: 10px; /* Space between items */
+}
+
+input[type="date"] {
+    background-color: #1e1e1e; /* Dark background for date input */
+    color: #ffffff; /* White text color */
+    border: 1px solid #007bff; /* Blue border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside date input */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding and border in width */
+    font-size: 16px; /* Font size for date input */
+    margin-top: 10px; /* Margin above date input */
+}
+
+input[type="date"]:focus {
+    border-color: #0056b3; /* Darker blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: #ffffff; /* White color for the calendar icon */
+    border-radius: 5px; /* Rounded corners for the icon */
+    padding: 5px; /* Padding around the icon */
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Remove default spinner arrows */
+    margin: 0; /* Remove margins */
+}
+
+
+
+

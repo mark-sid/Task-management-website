@@ -1,0 +1,88 @@
+{% extends 'projects/base.html' %}
+
+{% block 'content' %}
+
+<div class="project_detail">
+    <h1>{{project.title}}</h1>
+    <div class="flex-container">
+        <a href="{% url 'project_update' project_id=project.id %}">Edit</a>
+
+        <form action="{% url 'project_delete' project_id=project.id %}" method="POST" onsubmit="return confirmDelete();">
+            {% csrf_token %}
+            <button type="submit" class="delete_btn">Delete</button>
+        </form>
+    </div>
+
+
+    <script>
+        function confirmDelete() {
+            const project_title = '{{ project.title }}'.toLowerCase().trim().replace(/\s+/g, '');
+
+            var userInput = prompt(`Enter '${project_title}' for confirmation:`);
+            userInput = userInput ? userInput.toLowerCase().trim().replace(/\s+/g, '') : '';
+
+            if (userInput === project_title) {
+                return true;
+            } else {
+                alert("You did not confirm the deletion.");
+                return false;
+            }
+        }
+    </script>
+
+    <h3>{{project.description}}</h3>
+    <p></p>
+    deadline date: {{ project.deadline_date|date:"d.m.Y" }}
+    <p></p>
+    <a href="{% url 'task_create' project_id=project.id %}">add new task</a>
+    <ul>
+        <div class="task-checkbox-container">
+            {% for task in tasks %}
+                <li>
+                    <a href="{% url 'task_detail' task_id=task.id %}" class="task">{{task.title}}</a>
+                    <input type="checkbox" name="completed" id="checkbox_completed_{{ task.id }}"
+                           value="true" {% if task.completed %}checked{% endif %} checked="checked">
+                    <span class="checkmark"></span>
+
+                </li>
+            {% endfor %}
+        </div>
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Getting all checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][name="completed"]');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+
+                    const taskId = this.id.split('_').pop(); // Getting task number from id
+                    const url = "{% url 'task_complete' task_id='__task_id__' %}".replace('__task_id__', taskId);
+
+                    // Sending post request to the server
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({ completed: this.checked })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Task updated successfully');
+                        } else {
+                            console.error('Error updating task');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
+
+</div>
+
+{% endblock %}

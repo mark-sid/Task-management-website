@@ -1,0 +1,57 @@
+{% extends 'projects/base.html' %}
+
+{% block 'content' %}
+<a href="{% url 'project_detail' project_id=task.project.id %}">Back</a>
+<div class="task_detail">
+    <div class="flex-container">
+        <h1>{{task.title}}</h1>
+
+        <input type="checkbox" name="completed" id="checkbox_completed"
+               value="true" {% if task.completed %}checked{% endif %}>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Getting the checkbox element
+            const checkbox = document.getElementById('checkbox_completed');
+
+            // Adding an event listener for the change event on the checkbox
+            checkbox.addEventListener('change', function() {
+                // Getting the id
+                const taskId = {{ task.id }};
+                const url = "{% url 'task_complete' task_id=task.id %}";
+
+                // Sending a POST request to the server
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ completed: checkbox.checked })
+                });
+            });
+        });
+    </script>
+
+    <a href="{% url 'task_update' task_id=task.id %}">Edit</a>
+
+    <form action="{% url 'task_delete' task_id=task.id %}"
+          method="POST"
+          onsubmit="return confirm('Are you sure you want to delete the task?');">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+    <span>{{task.description}}</span>
+    <p></p>
+    {% if task.due_date %}
+        Due date: {{ task.due_date|date:"d.m.Y" }}
+    {% else %}
+        Due date: Do not exist
+    {% endif %}
+
+
+</div>
+{% endblock %}
